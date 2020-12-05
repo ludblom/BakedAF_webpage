@@ -45,11 +45,16 @@ def logout():
 def signup_post():
     uname = request.form.get('uname')
     password = request.form.get('password')
+    secret = request.form.get('secret')
 
     user = User.query.filter_by(uname=uname).first()
 
     if user:
         flash('Username already taken')
+        return redirect(url_for('auth.signup'))
+    # TODO Make some prettier solution to this
+    elif(secret != "some-secret-only-users-know"):
+        flash('Wrong secret')
         return redirect(url_for('auth.signup'))
 
     new_user = User(uname=uname, password=generate_password_hash(password, method='sha256'))
