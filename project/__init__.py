@@ -30,7 +30,7 @@ def create_app():
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
-    from .splitting import splitting as split_wise_blueprint
-    app.register_blueprint(split_wise_blueprint)
+    from .splitting import splitting as splitting_blueprint
+    app.register_blueprint(splitting_blueprint)
 
     return app
