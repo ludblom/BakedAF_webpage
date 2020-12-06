@@ -17,7 +17,7 @@ def login():
 def login_post():
     uname = request.form.get('uname')
     password = request.form.get('password')
-    remember = True if request.form.get('remember') else False
+    remember = False if request.form.get('remember') == None else True
 
     user = User.query.filter_by(uname=uname).first()
 
