@@ -1,5 +1,11 @@
-from flask import Blueprint, render_template
-from flask_login import login_required
+# from flask import Blueprint, render_template, request
+# from flask_login import login_required
+
+from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask_login import login_user, logout_user, login_required
+from werkzeug.security import generate_password_hash, check_password_hash
+from .models import User
+from . import db
 
 
 splitting = Blueprint('splitting', __name__)
@@ -43,6 +49,18 @@ def split(people):
             end -= 1
             diff = people[end][1]-tot_owed
     return send_to_who
+
+
+@splitting.route('/split_wiser', methods=['POST'])
+@login_required
+def split_wiser_post():
+    event_name = request.form.get('event-name')
+    event_value = request.form.get('event-value')
+
+    # TODO Make an SQL query of the added event
+
+    print("Name: {} Event: {}".format(event_name, event_value))
+    return redirect(url_for('splitting.split_wiser'))
 
 
 @splitting.route('/split_wiser')

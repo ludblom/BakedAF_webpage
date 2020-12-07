@@ -1,6 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<h2>Add an event</h2>
+<form method="POST" action="/split_wiser">
+    <div class="field">
+        <div class="control">
+            <input class="input" type="text" name="event-name" placeholder="Event name">
+    </div>
+    <div class="field">
+        <div class="control">
+            <input class="input" type="text" name="event-value" placeholder="Event value">
+    </div>
+    <button class="button">Submit</button>
+</form>
+
+<br>
 {% for person, spent in persons %}
 {{ person }} have spent {{ spent }}
 <br>
