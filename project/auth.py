@@ -53,7 +53,7 @@ def signup_post():
         flash('Username already taken')
         return redirect(url_for('auth.signup'))
     # TODO Make some prettier solution to this
-    elif(secret != "some-secret-only-users-know"):
+    elif(secret != "abc"):
         flash('Wrong secret')
         return redirect(url_for('auth.signup'))
 
